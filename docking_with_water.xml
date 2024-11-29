@@ -1,0 +1,21 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="ligand_docking" weights="ligand.wts"/>
+    </SCOREFXNS>
+    <TASKOPERATIONS/>
+    <MOVERS>
+        <!-- Add solvent molecules -->
+        <AddSolvent name="add_water" solvent_type="explicit"/>
+        
+        <!-- Dock the receptor (R chain) with the drug (H and L chains) -->
+        <DockLigand name="dock_ligand" scorefxn="ligand_docking" water="true"/>
+
+        <!-- Analyze interface -->
+        <InterfaceAnalyzerMover name="analyze_interface" scorefxn="ligand_docking"/>
+    </MOVERS>
+    <PROTOCOLS>
+        <Add mover_name="add_water"/>
+        <Add mover_name="dock_ligand"/>
+        <Add mover_name="analyze_interface"/>
+    </PROTOCOLS>
+</ROSETTASCRIPTS>
