@@ -1,0 +1,22 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="ref15" weights="ref15.wts"/>
+    </SCOREFXNS>
+    
+    <MOVERS>
+        <ResidueEnergyBreakdown name="reb" scorefxn="ref15" residue_selector="drug" />
+    </MOVERS>
+    
+    <FILTERS>
+        <ResidueEnergyBreakdownFilter name="reb_filter" scorefxn="ref15" residue_selector="drug" threshold="0.0"/>
+    </FILTERS>
+    
+    <RESIDUE_SELECTORS>
+        <Chain name="drug" chains="H,L"/>
+    </RESIDUE_SELECTORS>
+    
+    <PROTOCOLS>
+        <Add mover="reb"/>
+    </PROTOCOLS>
+</ROSETTASCRIPTS>
+
